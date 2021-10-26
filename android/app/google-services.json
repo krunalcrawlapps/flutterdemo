@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "541413759018",
+    "project_id": "flutterdemo-krunalsutariya",
+    "storage_bucket": "flutterdemo-krunalsutariya.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541413759018:android:262c56fbe5138233aa0b53",
+        "android_client_info": {
+          "package_name": "com.crawlapps.flutterdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "541413759018-5h75shd2u89vgsc9s8vt838qhi827sgs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAH0dqtnoVvihTiJtk3WmU3xXMMimIEMmY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "541413759018-5h75shd2u89vgsc9s8vt838qhi827sgs.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "541413759018-a1vfdaamev2g09dv4493b5cgfh0argss.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.crawlapps.flutterdemo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
