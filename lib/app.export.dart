@@ -6,6 +6,7 @@ export 'package:firebase_core/firebase_core.dart';
 export 'package:flutter/gestures.dart';
 export 'package:flutter/material.dart';
 export 'package:provider/provider.dart';
+export 'package:shared_preferences/shared_preferences.dart';
 
 export '../../widgets/rich_text.dart';
 export '../constants/img_font_color_string.dart';
@@ -17,4 +18,7 @@ export '../screens/auth/2.0_signup_screen.dart';
 export '../screens/auth/3.0_forgot_password_screen.dart';
 export '../screens/home/home_screen.dart';
 export '../utils/custom_extension.dart';
+export '../utils/firebase_auth_service.dart';
+export '../utils/shared_preference.dart';
 export '../widgets/common_widget.dart';
+export '../widgets/loading_indicator_overlay.dart';

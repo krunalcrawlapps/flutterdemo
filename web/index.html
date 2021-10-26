@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -11,11 +10,8 @@
 
     For more details:
     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
   -->
-  <base href="$FLUTTER_BASE_HREF">
+  <base href="/">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -24,10 +20,10 @@
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="flutterdemo">
+  <meta name="apple-mobile-web-app-title" content="flutter demo">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
-  <title>flutterdemo</title>
+  <title>Flutter Demo</title>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
@@ -37,8 +33,19 @@
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
   <script>
-    // TODO: Replace the following with your app's Firebase project configuration
-    // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
+    var serviceWorkerVersion = null;
+    var scriptLoaded = false;
+    function loadMainDartJs() {
+      if (scriptLoaded) {
+        return;
+      }
+      scriptLoaded = true;
+      var scriptTag = document.createElement('script');
+      scriptTag.src = 'main.dart.js';
+      scriptTag.type = 'application/javascript';
+      document.body.append(scriptTag);
+    }
+
     var firebaseConfig = {
       apiKey: "AIzaSyARDmcu5nfR4nzrBFgNPJ5VZoFvZBDsxCY",
       authDomain: "flutterdemo-krunalsutariya.firebaseapp.com",
@@ -72,7 +79,7 @@
             if (!reg.active && (reg.installing || reg.waiting)) {
               // No active web worker and we have installed or are installing
               // one for the first time. Simply wait for it to activate.
-              waitForActivation(reg.installing || reg.waiting);
+              waitForActivation(reg.installing ?? reg.waiting);
             } else if (!reg.active.scriptURL.endsWith(serviceWorkerVersion)) {
               // When the app updates the serviceWorkerVersion changes, so we
               // need to ask the service worker to update.
@@ -103,5 +110,4 @@
     }
   </script>
 </body>
-
 </html>

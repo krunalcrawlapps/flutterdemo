@@ -1,18 +1,17 @@
-import 'package:flutterdemo/model/user_model.dart';
-import 'package:flutterdemo/utils/firebase_auth_service.dart';
-import 'package:flutterdemo/widgets/common_widget.dart';
-import 'package:flutterdemo/widgets/loading_indicator_overlay.dart';
-
 import '../app.export.dart';
 
 class AuthProvider with ChangeNotifier {
-  UserModel? _userInfo;
-
   // Getter...
-  UserModel? get userInfo => this._userInfo;
+  UserModel? get userInfo => SharedPreferencesHelper.getUserInfo;
 
   // Setter...
-  set userInfo(UserModel? value) => this._userInfo = value;
+  set userInfo(UserModel? value) {
+    SharedPreferencesHelper.setUserInfo = value;
+
+    if (value != null) {
+      notifyListeners();
+    }
+  }
 
   bool get isUserLoggedIn => userInfo != null;
 
@@ -23,9 +22,13 @@ class AuthProvider with ChangeNotifier {
       LoadingIndicator.instance.showLoadingIndicator();
 
       // Login with email password...
-      await FirebaseAuthService.instance.signInWithEmailPassword(
+      User? _user = await FirebaseAuthService.instance.signInWithEmailPassword(
           email: userModel.email!, password: userModel.password!);
-      notifyListeners();
+
+      if (_user != null) {
+        // Convert firebase user model to own user model...
+        userInfo = convertUserToUserModel(_user);
+      }
     } catch (e) {
       // Show snack bar...
       showSnackBar(e);
@@ -36,7 +39,7 @@ class AuthProvider with ChangeNotifier {
   }
 
   // SignUp...
-  Future<void> SignUp({required UserModel userModel}) async {
+  Future<void> signUp({required UserModel userModel}) async {
     try {
       // Show loading indicator...
       LoadingIndicator.instance.showLoadingIndicator();
@@ -44,11 +47,11 @@ class AuthProvider with ChangeNotifier {
       // Login with email password...
       User? _user = await FirebaseAuthService.instance.signUpWithEmailPassword(
           email: userModel.email!, password: userModel.password!);
+
       if (_user != null) {
-        userInfo = UserModel(
-            displayName: _user.displayName, email: _user.email, id: _user.uid);
+        // Convert firebase user model to own user model...
+        userInfo = convertUserToUserModel(_user);
       }
-      notifyListeners();
     } catch (e) {
       // Show snack bar...
       showSnackBar(e);
@@ -73,5 +76,25 @@ class AuthProvider with ChangeNotifier {
       // Hide loading indicator...
       LoadingIndicator.instance.hideLoadingIndicator();
     }
+  }
+
+  // Logout...
+  void signOut() {
+    try {
+      userInfo = null;
+      FirebaseAuthService.instance.signOut;
+      notifyListeners();
+    } catch (e) {
+      // Show snack bar...
+      showSnackBar(e);
+    }
+  }
+
+  // Convert firebase user model to own user model...
+  UserModel convertUserToUserModel(User user) {
+    String _userName = user.displayName ?? "";
+    String _email = user.email ?? "";
+    String _id = user.uid;
+    return UserModel(email: _email, displayName: _userName, id: _id);
   }
 }

@@ -13,19 +13,31 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: _buildAppbar(),
       // Body...
-      body: _builfBody(),
+      body: _buildBody(),
     );
   }
 
   // App bar...
   AppBar _buildAppbar() {
-    return AppBar();
+    return AppBar(
+      title: const Text(StaticString.home),
+      actions: [
+        IconButton(
+            onPressed: onLogoutTapAction, icon: const Icon(Icons.logout)),
+      ],
+    );
   }
 
   // Body...
-  Widget _builfBody() {
+  Widget _buildBody() {
     return Column(
       children: const [],
     );
+  }
+
+  // Logout tap action...
+  void onLogoutTapAction() {
+    // Sign out...
+    Provider.of<AuthProvider>(context, listen: false).signOut();
   }
 }

@@ -155,7 +155,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       // Save Detail if form data is validated...
       _formKey.currentState?.save();
 
-      mutedProvider.SignUp(userModel: userInfo);
+      await mutedProvider.signUp(userModel: userInfo);
       Navigator.of(context).pop();
     } catch (e) {
       print(e);

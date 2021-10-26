@@ -51,6 +51,9 @@ class FirebaseAuthService {
   Future<void> forgotPassword(String email) async {
     try {
       await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      // Throw error...
+      throw e.message ?? "Something went wrong";
     } catch (e) {
       rethrow;
     }
@@ -60,6 +63,9 @@ class FirebaseAuthService {
   Future<void> signOut() async {
     try {
       await _auth.signOut();
+    } on FirebaseAuthException catch (e) {
+      // Throw error...
+      throw e.message ?? "Something went wrong";
     } catch (e) {
       rethrow;
     }

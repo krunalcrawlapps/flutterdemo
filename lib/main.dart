@@ -1,11 +1,11 @@
-
-
 import 'app.export.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Initialize firebase...
   await Firebase.initializeApp();
+  // Load share preference store data...
+  await SharedPreferencesHelper.loadSavedData();
   // Run app...
   runApp(const FlutterDemo());
 }
