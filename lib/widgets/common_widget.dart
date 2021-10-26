@@ -100,7 +100,7 @@ class CommonButton extends StatelessWidget {
                 label: Text(
                   title,
                   style: style ??
-                      Theme.of(context).textTheme.headline6!.copyWith(
+                      Theme.of(context).textTheme.headline2!.copyWith(
                             color:
                                 onPressed == null ? Colors.grey : Colors.white,
                           ),
@@ -112,7 +112,7 @@ class CommonButton extends StatelessWidget {
                 child: Text(
                   title,
                   style: style ??
-                      Theme.of(context).textTheme.headline6!.copyWith(
+                      Theme.of(context).textTheme.headline2!.copyWith(
                             color:
                                 onPressed == null ? Colors.grey : Colors.white,
                           ),

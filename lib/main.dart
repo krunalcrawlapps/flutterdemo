@@ -26,9 +26,9 @@ class FlutterDemo extends StatelessWidget {
       child: MaterialApp(
         navigatorKey: navigatorKey,
         title: StaticString.appName,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        // Theme...
+        theme: CustomAppTheme.lightTheme,
+        debugShowCheckedModeBanner: false,
         // Login screen...
         home: Consumer<AuthProvider>(
           builder: (context, auth, child) {
